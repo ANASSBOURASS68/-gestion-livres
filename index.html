@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Ma Bibliothèque</title>
+    <link rel="icon" type="image/png" href="./assets/images/Ma%20Bibliothèque%20_%20lire%20et%20grandir.png">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="flex flex-col items-center sm:flex-row sm:justify-center w-full p-4">
+        <div class="flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
+            <h1>Ma Bibliothèque</h1>
+            <img class="w-40 h-40 object-contain" src="assets/images/Ma Bibliothèque _ lire et grandir.png" alt="">
+        </div>
+    </header>
+
+<!-- Formulaire d'ajout d'un livre -->
+<section class="w-full max-w-6xl mx-auto px-4 sm:px-6" id="formulaire-livre">
+
+    <form id="form-1" class="w-full max-w-2xl mx-auto">
+
+        <div>
+            <div class="w-full">
+                <h1>Ajouter un Livre</h1>
+                <p>Remplissez les informations du livre ci-dessous.</p>
+            </div>
+
+        </div>
+        <div id="formulaire">
+            <div>
+                <h2>Titre</h2>
+            <input type="text" id="title" placeholder="Entrer le titre" class="w-full">
+            <span id="error-title" class="hidden"></span>
+            </div>
+        <div>
+            <h2>Auteur</h2>
+            <input type="text" id="auteur" placeholder="auteur" class="w-full">
+            <span id="error-auteur" class="hidden"></span>
+
+        </div>
+
+        <div>
+            <h2>L'année de publication</h2>
+            <input type="number" id="year" placeholder="Entrer l'année de publication" class="w-full">
+        </div>
+
+        <div>
+            <label for="genre">Genre</label>
+            <select id="genre" name="genre" class="w-full">
+                <option value="">Choisir un genre</option>
+                <option value="roman">Roman</option>
+                <option value="science-fiction">Science-fiction</option>
+                <option value="policier">Policier</option>
+                <option value="fantastique">Fantastique</option>
+                <option value="biographie">Biographie</option>
+                <option value="histoire">Histoire</option>
+                <option value="developpement-personnel">Développement personnel</option>
+                <option value="autre">Autre</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="4"
+                placeholder="Décrivez brièvement le livre..."
+                class="w-full resize-y"></textarea>
+        </div>
+
+        <div>
+            <label for="status">Statut de lecture</label>
+            <select id="status" name="status" class="w-full">
+                <option value="to-read">À lire</option>
+                <option value="reading">En cours de lecture</option>
+                <option value="read">Lu</option>
+            </select>
+        </div>
+
+        <div class="flex justify-end">
+            <button type="submit" class="w-full sm:w-auto" id="Ajouterlivre">
+                Ajouter le livre
+            </button>
+        </div>
+        </div>
+    </form>
+</section>
+
+<!-- Recherche et liste des livres -->
+<section class="w-full max-w-6xl mx-auto px-4 sm:px-6" id="liste-livres">
+
+    <div class="w-full max-w-2xl mx-auto">
+        <input type="search" id="search"
+            placeholder="Rechercher un livre..." class="w-full">
+
+        <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <button type="button" id="searchtitle" class="w-full sm:w-48">
+                Search By Title
+            </button>
+
+            <button type="button" id="searchcategory" class="w-full sm:w-48">
+                Search By Genre
+            </button>
+        </div>
+    </div>
+
+    <!-- Supprimer tous les livres -->
+    <div id="deleteAll" class="flex justify-center">
+        <button type="button" id="btn-supprimer-tout" class="w-full sm:w-auto">
+            Supprimer tous les livres
+            (<span id="nombre-livres">0</span>)
+        </button>
+    </div>
+
+    <!-- Tableau des livres -->
+    <div class="w-full max-w-full overflow-x-auto" id="table-container">
+        <table class="w-full min-w-[900px]" id="table-livres">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Année de publication</th>
+                    <th>Genre</th>
+                    <th>Description</th>
+                    <th>Statut de lecture</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+
+            <tbody id="tbody-livre">
+               
+            </tbody>
+        </table>
+    </div>
+
+</section>    
+
+
+
+
+
+
+
+<script src="src/main.js"></script>
+</body>
+</body>
+</html>
