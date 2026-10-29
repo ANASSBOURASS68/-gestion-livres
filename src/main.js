@@ -14,6 +14,11 @@ let searchtitle = document.getElementById('searchtitle')
 let searchauthor = document.getElementById('searchauthor')
 
 
+let mood = "create";
+let tmp;
+
+
+
 // console.log(title,auteur,year,genre,description,stats,btnAjouterlivre)
 
 
@@ -37,25 +42,46 @@ function createlivre(){
         description : description.value,
         stats : stats.value
     }
-    datalivre.push(newlivre)
+        datalivre.push(newlivre)
+    
     localStorage.setItem('Livre',   JSON.stringify(datalivre)      )
 }
-form.addEventListener('submit',function(e){
+
+form.addEventListener('submit', function(e) {
     e.preventDefault();
+
     let titreValide = validerTitle();
     let auteurValide = validerauteur();
 
     if (!titreValide) {
-    title.focus();
-} else if (!auteurValide) {
-    auteur.focus();
-} else {
-    createlivre();
-    showdata();
-    cleardata()
-}
+        title.focus();
+    } else if (!auteurValide) {
+        auteur.focus();
+    } else if (mood === "create") {
+        createlivre();
+    } else {
+        datalivre[tmp] = {
+            title: title.value.toLowerCase(),
+            auteur: auteur.value.toLowerCase(),
+            year: year.value,
+            genre: genre.value,
+            description: description.value,
+            stats: stats.value
+        };
+        
 
-})
+        localStorage.setItem('Livre', JSON.stringify(datalivre));
+    }
+
+    if (titreValide && auteurValide) {
+        showdata();
+        cleardata();
+
+        mood = "create";
+        btnAjouterlivre.textContent = "Ajouter";
+    }
+});
+
 
 function validerTitle() {
     let nomLivre = title.value.trim();
@@ -95,6 +121,7 @@ function validerauteur(){
         return true;
     }
 }
+//afficher dans le tableau
 
 function showdata(){
     let table = '';
@@ -108,7 +135,7 @@ function showdata(){
                     <td>${datalivre[i].genre}</td>
                     <td>${datalivre[i].description}</td>
                     <td><span>${datalivre[i].stats}</span></td>
-                    <td><button type="button" id="Modifier">Modifier</button></td>
+                    <td><button onclick="updatedata(${i})" type="button" id="Modifier">Modifier</button></td>
                     <td><button type="button" id="Supprimer">Supprimer</button></td>
         </tr>
         `
@@ -211,3 +238,23 @@ tri.addEventListener('change', function () {
 
     });
     
+
+
+    //update
+
+    function updatedata(i)
+    {
+        title.value = datalivre[i].title;
+        auteur.value = datalivre[i].auteur;
+        year.value = datalivre[i].year;
+        genre.value = datalivre[i].genre;
+        description.value = datalivre[i].description;
+        stats.value = datalivre[i].stats;
+
+        btnAjouterlivre.textContent="Update"
+
+
+        mood="update"
+        tmp = i;
+        title.focus();
+    }
