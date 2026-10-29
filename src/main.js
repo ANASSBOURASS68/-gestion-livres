@@ -10,6 +10,9 @@ let errortitle = document.getElementById('error-title')
 let errorauteur = document.getElementById('error-auteur')
 let tbodylivre = document.getElementById('tbody-livre')
 
+let searchtitle = document.getElementById('searchtitle')
+let searchauthor = document.getElementById('searchauthor')
+
 
 // console.log(title,auteur,year,genre,description,stats,btnAjouterlivre)
 
@@ -27,8 +30,8 @@ if(localStorage.Livre!=null){
 
 function createlivre(){
     let newlivre = {
-        title : title.value ,
-        auteur : auteur.value,
+        title : title.value.toLowerCase() ,
+        auteur : auteur.value.toLowerCase(),
         year : year.value,
         genre : genre.value,
         description : description.value,
@@ -125,3 +128,86 @@ function cleardata(){
     
 }
 showdata();
+
+
+// search mood 
+
+let searchmood="title";
+
+function getsearchmood(id){
+    let search=document.getElementById('search')
+
+    if(id== "searchtitle"){
+        searchmood = "title";
+        search.placeholder='Search by title'
+    }else{
+        searchmood = "category"
+        search.placeholder="Search by author";
+
+    }
+    search.focus()
+    search.value="";
+    showdata();
+}
+
+function searchdata(value) {
+    let table = "";
+
+    for (let i = 0; i < datalivre.length; i++) {
+
+        if (searchmood === "title") {
+            if (datalivre[i].title.toLowerCase().includes(value.toLowerCase())) {
+                table += `
+                    <tr>
+                        <td>${datalivre[i].title}</td>
+                        <td>${datalivre[i].auteur}</td>
+                        <td>${datalivre[i].year}</td>
+                        <td>${datalivre[i].genre}</td>
+                        <td>${datalivre[i].description}</td>
+                        <td><span>${datalivre[i].stats}</span></td>
+                        <td><button type="button" id="Modifier">Modifier</button></td>
+                        <td><button type="button" id="Supprimer">Supprimer</button></td>
+                    </tr>`;
+            }
+        } else {
+            if (datalivre[i].auteur.toLowerCase().includes(value.toLowerCase())) {
+                table += `
+                    <tr>
+                        <td>${datalivre[i].title}</td>
+                        <td>${datalivre[i].auteur}</td>
+                        <td>${datalivre[i].year}</td>
+                        <td>${datalivre[i].genre}</td>
+                        <td>${datalivre[i].description}</td>
+                        <td><span>${datalivre[i].stats}</span></td>
+                        <td><button type="button" id="Modifier">Modifier</button></td>
+                        <td><button type="button" id="Supprimer">Supprimer</button></td>
+                    </tr>`;
+            }
+        }
+    }
+
+    tbodylivre.innerHTML = table;
+}
+
+
+
+let tri = document.getElementById('tri');
+tri.addEventListener('change', function () {
+    if (tri.value === 'title') {
+        datalivre.sort(function (a, b) {
+            return a.title.localeCompare(b.title);
+        });
+    }else if(tri.value === 'year') {
+    datalivre.sort(function (a, b) {
+        return Number(a.year) - Number(b.year);
+    });
+}else if (tri.value === 'auteur') {
+    datalivre.sort(function (a, b) {
+        return a.auteur.localeCompare(b.auteur);
+    });
+}
+
+    showdata();
+
+    });
+    

@@ -8,7 +8,7 @@ section{
     background-color: #ffffff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
-    padding: 60px;
+    padding: 20px;
 }
 #formulaire-livre{
     margin-bottom: 30px;
@@ -105,7 +105,7 @@ box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
 }
 
 #searchtitle ,
-#searchcategory{
+#searchauthor{
 border: 1px solid #2563eb;
 padding: 14px 24px;
 border-radius: 10px;
@@ -120,7 +120,7 @@ margin-top: 10px;
 
 
 #searchtitle:hover ,
-#searchcategory:hover {
+#searchauthor:hover {
     background-color: #1d4ed8;
     box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
 }
@@ -144,7 +144,7 @@ margin-bottom: 20px;
 }
 
 #btn-supprimer-tout:hover{
-    background-color: #B91C1C;
+    background-color: #991B1B;
     box-shadow: 0 4px 10px rgba(220, 38, 38, 0.25);
 }
 
@@ -210,4 +210,50 @@ background-color: #DC2626;
 #Supprimer:hover{
     background-color: #B91C1C;
 }
+
+
+
+
+
+.recherche-tri {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.recherche-tri #search {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 15px;
+    border: 1px solid #a7d8c5;
+    border-radius: 10px;
+}
+
+.recherche-tri #tri {
+    width: 150px;
+    padding: 12px 8px;
+    border: 1px solid #a7d8c5;
+    border-radius: 10px;
+    background-color: #ecfdf5;
+    color: #065f46;
+    cursor: pointer;
+}
+
+.recherche-tri #search:focus,
+.recherche-tri #tri:focus {
+    outline: none;
+    border-color: #059669;
+}
+
+@media (max-width: 480px) {
+    .recherche-tri {
+        gap: 8px;
+    }
+
+    .recherche-tri #tri {
+        width: 120px;
+    }
+}
+
 
