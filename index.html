@@ -91,20 +91,32 @@
 <!-- Recherche et liste des livres -->
 <section class="w-full max-w-6xl mx-auto px-4 sm:px-6" id="liste-livres">
 
-    <div class="w-full max-w-2xl mx-auto">
-        <input type="search" id="search"
+    
+<div class="w-full max-w-2xl mx-auto">
+    <div class="recherche-tri">
+        <input onkeyup="searchdata(this.value)" type="search" id="search"
             placeholder="Rechercher un livre..." class="w-full">
 
-        <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <button type="button" id="searchtitle" class="w-full sm:w-48">
-                Search By Title
-            </button>
-
-            <button type="button" id="searchcategory" class="w-full sm:w-48">
-                Search By Genre
-            </button>
-        </div>
+        <select id="tri">
+            <option value="">Trier par</option>
+            <option value="title">Titre</option>
+            <option value="auteur">Auteur</option>
+            <option value="year">Année</option>
+        </select>
     </div>
+
+    <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <button onclick="getsearchmood(id)" type="button" id="searchtitle" class="w-full sm:w-48">
+            Search By Title
+        </button>
+
+        <button onclick="getsearchmood(id)" type="button" id="searchauthor" class="w-full sm:w-48">
+            Search By Author
+        </button>
+    </div>
+</div>
+
+    
 
     <!-- Supprimer tous les livres -->
     <div id="deleteAll" class="flex justify-center">
@@ -145,6 +157,5 @@
 
 
 <script src="src/main.js"></script>
-</body>
 </body>
 </html>
