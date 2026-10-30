@@ -46,6 +46,7 @@
         <div>
             <h2>L'année de publication</h2>
             <input type="number" id="year" placeholder="Entrer l'année de publication" class="w-full">
+            <span id="error-year" class="hidden"></span>
         </div>
 
         <div>
@@ -61,6 +62,7 @@
                 <option value="developpement-personnel">Développement personnel</option>
                 <option value="autre">Autre</option>
             </select>
+            <span id="error-genre" class="hidden"></span>
         </div>
 
         <div>
@@ -68,6 +70,7 @@
             <textarea id="description" name="description" rows="4"
                 placeholder="Décrivez brièvement le livre..."
                 class="w-full resize-y"></textarea>
+                <span id="error-description" class="hidden"></span>
         </div>
 
         <div>
@@ -119,8 +122,8 @@
     
 
     <!-- Supprimer tous les livres -->
-    <div id="deleteAll" class="flex justify-center">
-        <button type="button" id="btn-supprimer-tout" class="w-full sm:w-auto">
+    <div id="deleteAll" class="flex justify-center hidden">
+        <button type="button" onclick="deleteall()" id="btn-supprimer-tout" class="w-full sm:w-auto">
             Supprimer tous les livres
             (<span id="nombre-livres">0</span>)
         </button>
