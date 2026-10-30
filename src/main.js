@@ -18,11 +18,20 @@ let mood = "create";
 let tmp;
 
 
+let btndeleteAll = document.getElementById("deleteAll");
+let nombrelivres = document.getElementById('nombre-livres')
+
+let erroryear = document.getElementById('error-year');
+let errorgenre = document.getElementById('error-genre');
+let errordescription = document.getElementById('error-description');
+
 
 // console.log(title,auteur,year,genre,description,stats,btnAjouterlivre)
 
 
+
 //creer livre
+
 let datalivre ;
 
 if(localStorage.Livre!=null){
@@ -136,13 +145,23 @@ function showdata(){
                     <td>${datalivre[i].description}</td>
                     <td><span>${datalivre[i].stats}</span></td>
                     <td><button onclick="updatedata(${i})" type="button" id="Modifier">Modifier</button></td>
-                    <td><button type="button" id="Supprimer">Supprimer</button></td>
+                    <td><button onclick="deletedata(${i})" type="button" id="Supprimer">Supprimer</button></td>
         </tr>
         `
 
     }
     tbodylivre.innerHTML = table;
+    nombrelivres.textContent = datalivre.length;
+
+    if(datalivre.length > 0){
+        btndeleteAll.classList.remove("hidden")
+    }else{
+        btndeleteAll.classList.add("hidden")
+    }
+
 }
+
+
 
 function cleardata(){
     title.value='';
@@ -258,3 +277,18 @@ tri.addEventListener('change', function () {
         tmp = i;
         title.focus();
     }
+
+    function deletedata(i){
+        datalivre.splice(i,1);
+        localStorage.Livre = JSON.stringify(datalivre);
+        showdata();
+    }
+
+
+
+
+function deleteall(){
+    localStorage.clear();
+    datalivre.splice(0);
+    showdata();
+}
